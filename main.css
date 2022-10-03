@@ -1,0 +1,72 @@
+* {
+    box-sizing: border-box;
+    background-color: rgb(224, 226, 219);
+}
+
+body {
+    height: 100vh;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    color: rgb(0, 39, 43);
+    font-size: 4vmin;
+    margin-top: 2vmin;
+}
+
+header{
+    font-size: 10vmin;
+    letter-spacing: 0.5vmin;
+    color: rgb(0, 39, 43);
+    border: 0.1vmin solid rgb(0, 39, 43);
+    padding: 2vmin 6vmin;
+    background-color: rgb(182, 201, 187);
+}
+
+#board {
+    display: grid;
+    grid-template-columns: repeat(3, 20vmin);
+    grid-template-rows: repeat(3, 20vmin);
+}
+
+#board > div {
+    border: 0.2vmin solid rgb(0, 39, 43);
+    ;
+}
+
+section > #cell0, section > #cell1, section > #cell2 {
+    border-top: transparent;
+}
+
+section > #cell0, section > #cell3, section > #cell6 {
+    border-left: transparent;
+}
+
+section > #cell6, section > #cell7, section > #cell8 {
+    border-bottom: transparent;
+}
+
+section > #cell2, section > #cell5, section > #cell8 {
+    border-right: transparent;
+}
+
+button {
+    font-family: 'Poppins', sans-serif;
+    color: rgb(0, 39, 43);
+    background-color: rgb(182, 201, 187);
+    border: 0.3vmin solid rgb(192, 192, 192);
+    margin-top: 3vmin;
+    padding: 1vmin;
+    border-radius: 4vmin;
+}
+
+button:hover {
+    color: rgb(224, 226, 219);
+    background-color: rgb(0, 39, 43);
+    border: 0.3vmin solid rgb(0, 39, 43);
+}
