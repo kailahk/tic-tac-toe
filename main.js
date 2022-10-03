@@ -1,30 +1,10 @@
 /*----- constants -----*/
 let COLORS = {
-    '0': ['rgb(224, 226, 219)','Alabaster'],
-    '1': ['RGB(157, 106, 137)', 'Purple'],
-    '-1': ['RGB(25, 133, 161)', 'Blue'],
+    '0': ['rgb(224, 226, 219)','Alabaster', ''],
+    '1': ['RGB(157, 106, 137)', 'Purple', 'X'],
+    '-1': ['RGB(25, 133, 161)', 'Blue', 'O'],
     '2': ['rgb(182, 201, 187)', 'Grey Green']
 }
-
-let winnerCombos = [
-    [1, 1, 1, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 1, 1, 1, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 1, 1, 1],
-    [1, 0, 0, 1, 0, 0, 1, 0, 0], 
-    [0, 1, 0, 0, 1, 0, 0, 1, 0],
-    [0, 0, 1, 0, 0, 1, 0, 0, 1],
-    [1, 0, 0, 0, 1, 0, 0, 0, 1],
-    [0, 0, 1, 0, 1, 0, 1, 0, 0],
-
-    [-1, -1, -1, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, -1, -1, -1, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, -1, -1, -1],
-    [-1, 0, 0, -1, 0, 0, -1, 0, 0], 
-    [0, -1, 0, 0, -1, 0, 0, -1, 0],
-    [0, 0, -1, 0, 0, -1, 0, 0, -1],
-    [-1, 0, 0, 0, -1, 0, 0, 0, -1],
-    [0, 0, -1, 0, -1, 0, -1, 0, 0],
-]
 
 /*----- state variables -----*/
 let board; //array of 9 cells
@@ -58,6 +38,7 @@ function init() {
 // In response to use interaction, update all impacted state, then call render()
 function handleDrop(evt) {
     const cellIdx = cellsEl.indexOf(evt.target);
+    if (board[cellIdx] !== 0 || winner) return;
     //update the board state with the current player value
     board[cellIdx] = turn;
     // switch player turn
@@ -116,8 +97,10 @@ function render() {
 function renderBoard() {
     board.forEach(function(cell, idx) {
         const cellId = `cell${idx}`;
-        const cellEl = document.getElementById(cellId);
-        cellEl.style.backgroundColor = COLORS[cell][0];
+        let cellEl = document.getElementById(cellId);
+        cellEl.innerText = COLORS[cell][2];
+        cellEl.style.color = COLORS[cell][0];
+        cellEl.style.fontSize = '20vh';
     });
 }
 
@@ -125,11 +108,11 @@ function renderMessage() {
     if (winner === 'T') {
         msgEl.innerText = 'Tie Game!'
     } else if (winner) {
-        msgEl.innerHTML = `<span style="color: ${COLORS[winner][0]}">${COLORS[winner][1].toUpperCase()}</span> WINS!!!!!`
+        msgEl.innerHTML = `<span style="color: ${COLORS[winner][0]}">${COLORS[winner][2].toUpperCase()}</span> WINS!!!!!`
         headerEl.style.backgroundColor = COLORS[winner][0];
         headerEl.style.color = 'white';
     } else {
-        msgEl.innerHTML = `<span style="color: ${COLORS[turn][0]}">${COLORS[turn][1].toUpperCase()}</span>'s Turn!`
+        msgEl.innerHTML = `<span style="color: ${COLORS[turn][0]}">${COLORS[turn][2].toUpperCase()}</span>'s Turn!`
     }
 }
 

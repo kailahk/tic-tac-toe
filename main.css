@@ -37,6 +37,10 @@ header{
 #board > div {
     border: 0.2vmin solid rgb(0, 39, 43);
     ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25vh;
 }
 
 section > #cell0, section > #cell1, section > #cell2 {
